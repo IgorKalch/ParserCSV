@@ -1,5 +1,5 @@
-﻿using ConsoleApp1.Exceptions;
-using ConsoleApp1.Models;
+﻿using CompanyTree.Exceptions;
+using CompanyTree.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,16 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Helper
+namespace CompanyTree.Helper
 {
     public static class EmployeeParser
     {
         /// <summary>
-        /// 
+        /// Splits lines into elements.The 6 desired elements are highlighted.
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static async Task<List<Employee>> ReadFile(string filePath)
+        public static async Task<List<Employee>> ReadFileAsync(string filePath)
         {
             if (string.IsNullOrEmpty(filePath) || string.IsNullOrWhiteSpace(filePath))
             {
@@ -27,7 +27,6 @@ namespace ConsoleApp1.Helper
             {
                 throw new ArgumentException("File doesn't exist", nameof(filePath));
             }
-
 
             List<Employee> listEmployees = new List<Employee>();
 
@@ -45,7 +44,7 @@ namespace ConsoleApp1.Helper
 
                     if (textData.Length < 6)
                     {
-                        throw new InvalidRowDataException("Amount propertis lass then 6", row);
+                        throw new InvalidRowDataException("Amount properties lass then 6", row);
                     }
 
                     if (!int.TryParse(textData[0], out var id))
@@ -55,11 +54,12 @@ namespace ConsoleApp1.Helper
 
                     employee.ID = id;
 
-                    if (int.TryParse(textData[1], out var parentid))
+                    if (!int.TryParse(textData[1], out var parentid))
                     {
-                        employee.ParentID = parentid;
+                        throw new InvalidRowDataException("ParentId is not a number", row);
                     }
-                    
+                    employee.ParentID = parentid;
+
                     employee.Name = textData[2];
                     employee.Surname = textData[3];
                     employee.System = textData[4];

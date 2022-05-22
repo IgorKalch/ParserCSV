@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GrupByParent.cs" />
     <Compile Include="Helper\EmployeeParser.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Exceptions\InvalidRowDataException.cs" />

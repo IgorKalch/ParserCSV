@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleApp1.Exceptions
+namespace CompanyTree.Exceptions
 {
    public class InvalidRowDataException : Exception
     {
