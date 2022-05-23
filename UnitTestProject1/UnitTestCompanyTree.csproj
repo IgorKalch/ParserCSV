@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApp1\ConsoleApp1.csproj">
+    <ProjectReference Include="..\ConsoleApp1\CompanyTree.csproj">
       <Project>{a4808499-8004-41f3-a52b-9a825937a586}</Project>
-      <Name>ConsoleApp1</Name>
+      <Name>CompanyTree</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
